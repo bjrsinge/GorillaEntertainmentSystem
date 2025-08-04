@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaEntertainmentSystem", "GorillaEntertainmentSystem.csproj", "{6CE2FD2D-AE5D-423C-B6FE-3CBFF8A786BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CE2FD2D-AE5D-423C-B6FE-3CBFF8A786BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE2FD2D-AE5D-423C-B6FE-3CBFF8A786BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE2FD2D-AE5D-423C-B6FE-3CBFF8A786BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE2FD2D-AE5D-423C-B6FE-3CBFF8A786BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB54F7D0-A50F-4D4D-BF4C-063E9D620350}
+	EndGlobalSection
+EndGlobal
