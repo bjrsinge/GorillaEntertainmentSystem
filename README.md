@@ -5,7 +5,7 @@ This mod plays (most) .nes ROM files directly inside Gorilla Tag.
 <img width="1920" height="1080" alt="Image of the mod in-game" src="https://github.com/user-attachments/assets/2cad28ff-de09-46ae-a627-3ca7ca6a12ee" />
 
 # Setup
-Download the .zip from the releases tab and extract it in your plugins folder. Your file structure should look like:
+Download the .zip from the releases tab, bring it into your BepInEx plugins folder, and extract it. Your file structure should look like this:
 ```
 BepInEx
   plugins
