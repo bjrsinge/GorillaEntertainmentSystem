@@ -1,4 +1,4 @@
-A port of [UNES](https://github.com/ls9512/UNES), a Unity NES emulator, to Gorilla Tag.
+A port of [UNES](https://github.com/ls9512/UNES), a Unity NES emulator, to Gorilla Tag.  
 This mod plays (most) .nes ROM files directly inside Gorilla Tag.
 
 <img width="1920" height="1080" alt="Image of the mod in-game" src="https://github.com/user-attachments/assets/2cad28ff-de09-46ae-a627-3ca7ca6a12ee" />
@@ -13,35 +13,35 @@ BepInEx
       roms
         (.nes roms go here)
 ```
-Put your .nes ROMs in the roms folder. This mod does not come with any ROMs.
+Put your .nes ROMs in the roms folder. This mod does not come with any ROMs.  
 If you don't have any ROMs, you can get an NES cartridge of the game you want along with a [cartridge reader](https://github.com/sanni/cartreader) and rip them that way. I can't legally tell you how to get them otherwise.
 
 # Controls
 ## Normal
-VR Left Joystick = NES D-Pad
-VR B = NES B Button
-VR A = NES A Button
-VR Left Trigger = NES Start Button
-VR Right Trigger = NES Select Button
+- VR Left Joystick = NES D-Pad  
+- VR B = NES B Button  
+- VR A = NES A Button  
+- VR Left Trigger = NES Start Button  
+- VR Right Trigger = NES Select Button  
 
 ## Swapped
-VR Right Joystick = NES D-Pad
-VR X = NES B Button
-VR Y = NES A Button
-VR Left Trigger = NES Start Button
-VR Right Trigger = NES Select Button
+- VR Right Joystick = NES D-Pad  
+- VR X = NES B Button  
+- VR Y = NES A Button  
+- VR Left Trigger = NES Start Button  
+- VR Right Trigger = NES Select Button  
 
-Click the left joystick to bring the tablet to you.
+- Click the left joystick to bring the tablet to you.
 
 # Settings/Config
 ## Swap hands
-Swaps the inputs between controllers, mainly intended for those who have stick drift in their left joystick.
+- Swaps the inputs between controllers, mainly intended for those who have stick drift in their left joystick.
 ## Grab to use
-Whether you need to be holding the tablet for your inputs to register. Intended to prevent accidental inputs when not playing.
+- Whether you need to be holding the tablet for your inputs to register. Intended to prevent accidental inputs when not playing.
 
 # Known Issues (Let me know if you encounter any other issues!)
-Certain games not booting due to an unsupported mapper. Probably won't be fixed any time soon.
-Pausing in some games turns the screen white.
+- Certain games not booting due to an unsupported mapper. Probably won't be fixed any time soon.
+- Pausing in some games turns the screen white.
 
 # To do
 - Implement saving and loading.
@@ -52,8 +52,8 @@ Pausing in some games turns the screen white.
 - developer9998 - Creator of [DevHoldableEngine](https://github.com/developer9998/DevHoldableEngine), licensed under MIT.
 
 # License
-This mod is licensed under the [GNU GPLv3](LICENSE.txt) license.
-DevHoldableEngine is licensed under the [MIT](Scripts/LICENSE-MIT.txt) license.
+- This mod is licensed under the [GNU GPLv3](LICENSE.txt) license.
+- DevHoldableEngine is licensed under the [MIT](Scripts/LICENSE-MIT.txt) license.
 
 # Disclaimer
 This product is not affiliated with Gorilla Tag or Another Axiom LLC and is not endorsed or otherwise sponsored by Another Axiom LLC. Portions of the materials contained herein are property of Another Axiom LLC. © 2021 Another Axiom LLC.
