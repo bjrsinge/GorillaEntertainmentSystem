@@ -44,12 +44,12 @@ Certain games not booting due to an unsupported mapper. Probably won't be fixed 
 Pausing in some games turns the screen white.
 
 # To do
-Implement saving and loading.
-Add a power button to fully prevent accidental inputs when not using the mod.
+- Implement saving and loading.
+- Add a power button to fully prevent accidental inputs when not using the mod.
 
 # Credits
-ls9512: Creator of [UNES](https://github.com/ls9512/UNES), licensed under GPLv3.
-developer9998: Creator of [DevHoldableEngine](https://github.com/developer9998/DevHoldableEngine), licensed under MIT.
+- ls9512 - Creator of [UNES](https://github.com/ls9512/UNES), licensed under GPLv3.
+- developer9998 - Creator of [DevHoldableEngine](https://github.com/developer9998/DevHoldableEngine), licensed under MIT.
 
 # License
 This mod is licensed under the [GNU GPLv3](LICENSE.txt) license.
