@@ -50,7 +50,7 @@ namespace GorillaEntertainmentSystem.Scripts.UNES
         {
             return _emu?.Mapper.GetSaveData();
         }
-
+         
         private void BootCartridge(byte[] romData)
         {
             _emu = new Emulator(romData, _controller);

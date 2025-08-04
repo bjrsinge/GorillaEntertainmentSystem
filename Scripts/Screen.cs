@@ -16,9 +16,8 @@ namespace GorillaEntertainmentSystem.Scripts
         int rom_index, setting_index;
         string[] rom_files, settings = { $"Swap hands : {Plugin.swap_hands.Value}", $"Grab to use : {Plugin.grab_to_use.Value}" };
         string rom_path, selected_rom;
-        bool in_settings;
-        TextMeshPro header_text;
-        TextMeshPro screen_text;
+        bool in_settings, no_roms;
+        TextMeshPro header_text, screen_text;
 
         public void Initialize()
         {
@@ -43,7 +42,7 @@ namespace GorillaEntertainmentSystem.Scripts
             }
 
             rom_files = Directory.GetFiles(rom_path, "*.nes");
-            if (rom_files.Length == 0) return;
+            if (rom_files.Length == 0) no_roms = true;
             UpdateScreen();
         }
 
@@ -126,6 +125,7 @@ namespace GorillaEntertainmentSystem.Scripts
             }
             else
             {
+                if (no_roms) { screen_text.text = "No ROMs found"; return; }
                 int roms_per_page = 11;
                 int page = rom_index / roms_per_page;
                 int page_start = page * roms_per_page;

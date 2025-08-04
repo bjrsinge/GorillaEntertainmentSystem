@@ -21,7 +21,7 @@ namespace GorillaEntertainmentSystem
         public static ConfigEntry<bool> swap_hands;
         public static ConfigEntry<bool> grab_to_use;
         public static Vector2 stick;
-        bool steam, init;
+        bool steam, init, stick_click, last_stick_click;
         public static bool grab, swapped;
         public static RenderTexture screen_texture;
         public static Material screen_material;
@@ -99,6 +99,15 @@ namespace GorillaEntertainmentSystem
             if (steam && !swapped) { stick = SteamVR_Actions.gorillaTag_LeftJoystick2DAxis.axis; }
             else if (!steam && !swapped) { ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out stick); }
             else { stick = ControllerInputPoller.instance.rightControllerPrimary2DAxis; }
+
+            if (steam) { stick_click = SteamVR_Actions.gorillaTag_LeftJoystickClick.state; }
+            else if (!steam) { ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out stick_click); }
+
+            if (stick_click && !last_stick_click)
+            {
+                asset.transform.position = GorillaTagger.Instance.rightHandTransform.position;
+            }
+            last_stick_click = stick_click;
         }
     }
 }

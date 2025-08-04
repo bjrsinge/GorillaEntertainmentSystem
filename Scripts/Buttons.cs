@@ -14,6 +14,7 @@ namespace GorillaEntertainmentSystem.Scripts
             if (ind == null) return;
 
             last_press = current;
+            GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, ind.isLeftHand, 0.05f);
 
             switch (gameObject.name)
             {
