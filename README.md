@@ -44,10 +44,6 @@ If you don't have any ROMs, you can get an NES cartridge of the game you want al
 - Certain games not booting due to an unsupported mapper. Probably won't be fixed any time soon.
 - Pausing in some games turns the screen white.
 
-# To do
-- Implement saving and loading.
-- Add a power button to fully prevent accidental inputs when not using the mod.
-
 # Credits
 - ls9512 - Creator of [UNES](https://github.com/ls9512/UNES), licensed under GPLv3.
 - developer9998 - Creator of [DevHoldableEngine](https://github.com/developer9998/DevHoldableEngine), licensed under MIT.
