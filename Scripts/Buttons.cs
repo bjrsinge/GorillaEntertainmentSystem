@@ -15,6 +15,7 @@ namespace GorillaEntertainmentSystem.Scripts
 
             last_press = current;
             GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, ind.isLeftHand, 0.05f);
+            GorillaTagger.Instance.StartVibration(ind.isLeftHand, 0.1f, 0.05f);
 
             switch (gameObject.name)
             {
@@ -41,6 +42,9 @@ namespace GorillaEntertainmentSystem.Scripts
                     break;
                 case "ShowMenu":
                     Plugin.screen.ShowMenu();
+                    break;
+                case "Power":
+                    Plugin.screen.Power();
                     break;
             }
         }

@@ -15,7 +15,7 @@ namespace GorillaEntertainmentSystem.Scripts
         public static UNESBehaviour unes;
         int rom_index, setting_index;
         string[] rom_files, settings = { $"Swap hands : {Plugin.swap_hands.Value}", $"Grab to use : {Plugin.grab_to_use.Value}" };
-        string rom_path, selected_rom;
+        string rom_path, selected_rom, save_path, loaded_rom, save_file;
         bool in_settings, no_roms;
         TextMeshPro header_text, screen_text;
 
@@ -34,12 +34,11 @@ namespace GorillaEntertainmentSystem.Scripts
             unes.Input = new VRInput();
 
             rom_path = Path.Combine(Paths.PluginPath, "GorillaEntertainmentSystem", "roms");
+            save_path = Path.Combine(Paths.PluginPath, "GorillaEntertainmentSystem", "saves");
 
-            if (!Directory.Exists(rom_path))
-            {
-                Directory.CreateDirectory(rom_path);
-                return;
-            }
+            if (!Directory.Exists(save_path)) { Directory.CreateDirectory(save_path); }
+
+            if (!Directory.Exists(rom_path)) { Directory.CreateDirectory(rom_path); return; }
 
             rom_files = Directory.GetFiles(rom_path, "*.nes");
             if (rom_files.Length == 0) no_roms = true;
@@ -51,6 +50,7 @@ namespace GorillaEntertainmentSystem.Scripts
             Destroy(emulator);
             unes._rendererRunning = false;
             unes.Renderer?.End();
+
             emulator = new GameObject("UNES");
             emulator.transform.SetParent(Plugin.asset.transform);
             unes = emulator.AddComponent<UNESBehaviour>();
@@ -60,6 +60,12 @@ namespace GorillaEntertainmentSystem.Scripts
             unes.Input = new VRInput();
             Plugin.asset.transform.Find("NESScreen").GetComponent<Renderer>().material = Plugin.screen_material;
             unes.Boot(bytes);
+
+            save_file = Path.Join(save_path, Path.GetFileNameWithoutExtension(selected_rom)) + ".sav";
+            if (File.Exists(save_file))
+            {
+                unes.LoadSaveData(File.ReadAllBytes(save_file));
+            }
         }
 
         public void ChangeIndex(int increment)
@@ -91,7 +97,12 @@ namespace GorillaEntertainmentSystem.Scripts
             else
             {
                 selected_rom = rom_files[rom_index];
+                if (unes.GameStarted)
+                {
+                    File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", unes.GetSaveData());
+                }
                 ReloadEmu(File.ReadAllBytes(selected_rom));
+                loaded_rom = selected_rom;
             }
         }
 
@@ -103,6 +114,16 @@ namespace GorillaEntertainmentSystem.Scripts
         public void ShowMenu()
         {
             transform.parent.gameObject.SetActive(!transform.parent.gameObject.activeSelf);
+        }
+
+        public void Power()
+        {
+            if (unes.GameStarted)
+            {
+                File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", unes.GetSaveData());
+                unes._rendererRunning = false;
+                unes.Renderer?.End();
+            }
         }
 
         public void Settings()
@@ -134,7 +155,7 @@ namespace GorillaEntertainmentSystem.Scripts
                 for (int i = page_start; i < page_end; i++)
                 {
                     string rom = Path.GetFileNameWithoutExtension(rom_files[i]);
-                    if (rom.Length > 30) { rom =  rom.Substring(0, 30) + "..."; }
+                    if (rom.Length > 30) { rom = rom.Substring(0, 30) + "..."; }
                     screen_text.text += i == rom_index ? $"> {rom}\n" : $"{rom}\n";
                 }
             }

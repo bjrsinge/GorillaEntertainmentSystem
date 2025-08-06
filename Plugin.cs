@@ -54,8 +54,7 @@ namespace GorillaEntertainmentSystem
             if (init)
             {
                 asset.SetActive(false);
-                Scripts.Screen.unes._rendererRunning = false;
-                Scripts.Screen.unes.Renderer?.End();
+                screen.Power();
             }
         }
 
@@ -96,17 +95,12 @@ namespace GorillaEntertainmentSystem
         {
             if (!init) return;
 
-            if (steam && !swapped) { stick = SteamVR_Actions.gorillaTag_LeftJoystick2DAxis.axis; }
-            else if (!steam && !swapped) { ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out stick); }
-            else { stick = ControllerInputPoller.instance.rightControllerPrimary2DAxis; }
+            if (steam && !swapped) { stick = SteamVR_Actions.gorillaTag_LeftJoystick2DAxis.axis; stick_click = SteamVR_Actions.gorillaTag_LeftJoystickClick.state; }
+            else if (!steam && !swapped) { ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out stick); ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out stick_click); }
+            else if (steam && swapped) { stick = ControllerInputPoller.instance.rightControllerPrimary2DAxis; stick_click = SteamVR_Actions.gorillaTag_LeftJoystickClick.state; }
+            else { ControllerInputPoller.instance.rightControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out stick); ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out stick_click); }
 
-            if (steam) { stick_click = SteamVR_Actions.gorillaTag_LeftJoystickClick.state; }
-            else if (!steam) { ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out stick_click); }
-
-            if (stick_click && !last_stick_click)
-            {
-                asset.transform.position = GorillaTagger.Instance.rightHandTransform.position;
-            }
+            if (stick_click && !last_stick_click) { asset.transform.position = GorillaTagger.Instance.rightHandTransform.position; }
             last_stick_click = stick_click;
         }
     }
