@@ -22,6 +22,7 @@ namespace GorillaEntertainmentSystem.Scripts
 
         public void Initialize()
         {
+            Application.quitting += Save;
             header_text = Plugin.asset.transform.Find("Menu/Screen/header_text").GetComponent<TextMeshPro>();
             screen_text = Plugin.asset.transform.Find("Menu/Screen/screen_text").GetComponent<TextMeshPro>();
             header_text.font = GorillaTagger.Instance.offlineVRRig.playerText1.font;
@@ -62,11 +63,7 @@ namespace GorillaEntertainmentSystem.Scripts
             Plugin.asset.transform.Find("NESScreen").GetComponent<Renderer>().material = Plugin.screen_material;
             unes.Boot(bytes);
 
-            save_file = Path.Join(save_path, Path.GetFileNameWithoutExtension(selected_rom)) + ".sav";
-            if (File.Exists(save_file))
-            {
-                unes.LoadSaveData(File.ReadAllBytes(save_file));
-            }
+            Load();
         }
 
         public void ChangeIndex(int increment)
@@ -98,15 +95,27 @@ namespace GorillaEntertainmentSystem.Scripts
             else
             {
                 selected_rom = rom_files[rom_index];
-
-                byte[] save_data = unes.GetSaveData();
-                if (unes.GameStarted && string.IsNullOrWhiteSpace(Encoding.Default.GetString(save_data)))
-                {
-                    File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", save_data);
-                }
-
+                Save();
                 ReloadEmu(File.ReadAllBytes(selected_rom));
                 loaded_rom = selected_rom;
+            }
+        }
+
+        public void Save()
+        {
+            byte[] save_data = unes.GetSaveData();
+            if (unes.GameStarted && string.IsNullOrWhiteSpace(Encoding.Default.GetString(save_data)))
+            {
+                File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", save_data);
+            }
+        }
+
+        public void Load()
+        {
+            save_file = Path.Join(save_path, Path.GetFileNameWithoutExtension(selected_rom)) + ".sav";
+            if (File.Exists(save_file))
+            {
+                unes.LoadSaveData(File.ReadAllBytes(save_file));
             }
         }
 
@@ -122,11 +131,9 @@ namespace GorillaEntertainmentSystem.Scripts
 
         public void Power()
         {
-            byte[] save_data = unes.GetSaveData();
-
-            if (unes.GameStarted && string.IsNullOrWhiteSpace(Encoding.Default.GetString(save_data)))
+            Save();
+            if (unes.GameStarted)
             {
-                File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", save_data);
                 unes._rendererRunning = false;
                 unes.Renderer?.End();
             }
