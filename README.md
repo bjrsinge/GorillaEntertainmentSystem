@@ -17,6 +17,8 @@ BepInEx
 Put your .nes ROMs in the roms folder. This mod does not come with any ROMs.  
 If you don't have any ROMs, you can get an NES cartridge of the game you want along with a [cartridge reader](https://github.com/sanni/cartreader) and rip them that way. I can't legally tell you how to get them otherwise.
 
+Your game will automatically save (if it supports saving) when you change games, power off, or quit Gorilla Tag.
+
 # Controls
 ## Normal
 - VR Left Joystick = NES D-Pad  
@@ -32,7 +34,7 @@ If you don't have any ROMs, you can get an NES cartridge of the game you want al
 - VR Left Trigger = NES Start Button  
 - VR Right Trigger = NES Select Button  
 
-- Click the left joystick to bring the tablet to you.
+Click the left joystick to bring the tablet to you.
 
 # Settings/Config
 ## Swap hands
