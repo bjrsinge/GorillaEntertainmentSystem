@@ -4,6 +4,7 @@ using GorillaEntertainmentSystem.Scripts.UNES;
 using GorillaEntertainmentSystem.Scripts.UNES.Controller;
 using GorillaEntertainmentSystem.Scripts.UNES.Input;
 using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -97,10 +98,13 @@ namespace GorillaEntertainmentSystem.Scripts
             else
             {
                 selected_rom = rom_files[rom_index];
-                if (unes.GameStarted)
+
+                byte[] save_data = unes.GetSaveData();
+                if (unes.GameStarted && string.IsNullOrWhiteSpace(Encoding.Default.GetString(save_data)))
                 {
-                    File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", unes.GetSaveData());
+                    File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", save_data);
                 }
+
                 ReloadEmu(File.ReadAllBytes(selected_rom));
                 loaded_rom = selected_rom;
             }
@@ -118,9 +122,11 @@ namespace GorillaEntertainmentSystem.Scripts
 
         public void Power()
         {
-            if (unes.GameStarted)
+            byte[] save_data = unes.GetSaveData();
+
+            if (unes.GameStarted && string.IsNullOrWhiteSpace(Encoding.Default.GetString(save_data)))
             {
-                File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", unes.GetSaveData());
+                File.WriteAllBytes(Path.Join(save_path, Path.GetFileNameWithoutExtension(loaded_rom)) + ".sav", save_data);
                 unes._rendererRunning = false;
                 unes.Renderer?.End();
             }
