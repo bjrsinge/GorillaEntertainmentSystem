@@ -31,7 +31,7 @@ namespace GorillaEntertainmentSystem.Scripts
             emulator = Plugin.asset.transform.Find("UNES").gameObject;
             unes = emulator.AddComponent<UNESBehaviour>();
             unes.RenderTexture = Plugin.screen_texture;
-            unes.FilterMode = FilterMode.Bilinear;
+            unes.FilterMode = FilterMode.Point;
             unes.KeyConfig = new KeyConfig();
             unes.Input = new VRInput();
 
